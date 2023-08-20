@@ -2,9 +2,6 @@
 
 pragma solidity ^0.8.0;
 
-// This interface is designed to be compatible with the Vyper version.
-/// @notice This is the Ethereum 2.0 deposit contract interface.
-/// For more information see the Phase 0 specification under https://github.com/ethereum/eth2.0-specs
 interface IDepositContract {
     /// @notice A processed deposit event.
     event DepositEvent(
