@@ -1,17 +1,17 @@
-//SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: GPL-2.0-or-later
+pragma solidity ^0.8.18;
 
 import "openzeppelin-contracts/contracts/token/ERC20/ERC20.sol";
 import "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import "openzeppelin-contracts/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "openzeppelin-contracts/contracts/token/ERC20/extensions/ERC20Burnable.sol";
-import "../Utils/Owned.sol";
+import "../utils/Ownable.sol";
 
-/// @title Parent contract for frxETH.sol
+/// @title Parent contract for IsbmxETHETH.sol
 /** @notice Combines Openzeppelin's ERC20Permit and ERC20Burnable with Synthetix's Owned. 
     Also includes a list of authorized minters */
-/// @dev frxETH adheres to EIP-712/EIP-2612 and can use permits
-contract ERC20PermitPermissionedMint is ERC20Permit, ERC20Burnable, Owned {
+/// @dev IsbmxETHETH adheres to EIP-712/EIP-2612 and can use permits
+contract ERC20PermitPermissionedMint is ERC20Permit, ERC20Burnable, Ownable {
     // Core
     address public timelock_address;
 
@@ -26,7 +26,7 @@ contract ERC20PermitPermissionedMint is ERC20Permit, ERC20Burnable, Owned {
         address _timelock_address,
         string memory _name,
         string memory _symbol
-    ) ERC20(_name, _symbol) ERC20Permit(_name) Owned(_creator_address) {
+    ) ERC20(_name, _symbol) ERC20Permit(_name) Ownable(_creator_address) {
         timelock_address = _timelock_address;
     }
 
