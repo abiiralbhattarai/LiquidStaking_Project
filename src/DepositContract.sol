@@ -117,7 +117,7 @@ contract DepositContract is IDepositContract, IERC165 {
         );
 
         // Add deposit data root to Merkle tree (update a single `branch` node)
-        deposit_count += 1;
+        deposit_count = deposit_count + 1;
         uint size = deposit_count;
         for (uint height = 0; height < DEPOSIT_CONTRACT_TREE_DEPTH; height++) {
             if ((size & 1) == 1) {

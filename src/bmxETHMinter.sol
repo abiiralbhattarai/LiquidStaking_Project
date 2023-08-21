@@ -75,7 +75,7 @@ contract bmxETHMinter is OperatorRegistry, ReentrancyGuard {
         uint256 withheld_amt = 0;
         if (withholdRatio != 0) {
             withheld_amt = (msg.value * withholdRatio) / RATIO_PRECISION;
-            currentWithheldETH += withheld_amt;
+            currentWithheldETH = currentWithheldETH + withheld_amt;
         }
 
         emit ETHSubmitted(msg.sender, recipient, msg.value, withheld_amt);
@@ -158,7 +158,7 @@ contract bmxETHMinter is OperatorRegistry, ReentrancyGuard {
             amount <= currentWithheldETH,
             "Not enough withheld ETH in contract"
         );
-        currentWithheldETH -= amount;
+        currentWithheldETH = currentWithheldETH - amount;
 
         (bool success, ) = payable(to).call{value: amount}("");
         require(success, "Invalid transfer");
